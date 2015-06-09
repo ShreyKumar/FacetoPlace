@@ -17,7 +17,7 @@ angular.module('users').controller('BirthdayController', ['$scope',
                 FB.api('/me/taggable_friends/', function(response){
                     console.log(response);
                 });
-            });
+            }, {scope: 'publish_actions, user_friends'});
             
         };
 
