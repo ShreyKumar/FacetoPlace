@@ -1,0 +1,7 @@
+Features for happyreply:
+- signin with facebook account 
+- load friends
+- put reply requests
+- put happy birthday requests
+    - add pictures/videos or text
+- specifically reply to people

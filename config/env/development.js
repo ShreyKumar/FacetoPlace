@@ -1,13 +1,13 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://localhost/facereply-dev',
+	db: 'mongodb://localhost/replyyoface-dev',
 	app: {
-		title: 'facereply - Development Environment'
+		title: 'ReplyYoFace - Development Environment'
 	},
 	facebook: {
-		clientID: process.env.FACEBOOK_ID || 'APP_ID',
-		clientSecret: process.env.FACEBOOK_SECRET || 'APP_SECRET',
+		clientID: process.env.FACEBOOK_ID || '905974226115519',
+		clientSecret: process.env.FACEBOOK_SECRET || 'f50e7b1870e5108ac34b0d5b6a9a1d92',
 		callbackURL: '/auth/facebook/callback'
 	},
 	twitter: {
