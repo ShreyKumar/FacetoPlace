@@ -1,7 +1,8 @@
 'use strict';
 
-angular.module('users').controller('BirthdayController', ['$scope',
-	function($scope) {
+angular.module('users').controller('BirthdayController', ['$scope', '$rootScope', '$http',
+	function($scope, $rootScope, $http) {
+        
         //connect to facebook
         window.fbAsyncInit = function() {
             FB.init({
@@ -11,11 +12,16 @@ angular.module('users').controller('BirthdayController', ['$scope',
             });
             console.log('connected to facebook');
             console.log(window.auth);
+            $scope.auth = window.auth;
+            console.log($scope.auth);
             
             FB.login(function(){
                 console.log('Permission has been granted');
                 FB.api('/me/taggable_friends/', function(response){
                     console.log(response);
+                    $scope.friends = response;
+                    $rootScope.$apply();
+                    
                 });
             }, {scope: 'publish_actions, user_friends'});
             
@@ -28,5 +34,16 @@ angular.module('users').controller('BirthdayController', ['$scope',
             js.src = "//connect.facebook.net/en_US/sdk.js";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
+        
+        $scope.nextFriends = function(){
+            $http.get($scope.friends.paging.next).success(function(data, status, headers, config){
+                console.log(data);
+                $scope.friends = data;
+            });
+        }
+        $scope.previousFriends = function(){ $http.get($scope.friends.paging.previous).success(function(data, status, headers, config){
+                 $scope.friends = data;
+            });
+        }
 }
 ]);

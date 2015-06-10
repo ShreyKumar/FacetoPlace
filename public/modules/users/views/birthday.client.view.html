@@ -1,3 +1,8 @@
 <section data-ng-controller="BirthdayController">
-	This is the Birthday
+    <div ng-repeat="friend in friends.data">
+        <img src="{{friend.picture.data.url}}" />
+        {{friend.name}}
+    </div>
+        <button ng-click="nextFriends()">Next</button>
+        <button ng-click="previousFriends()">Previous</button>
 </section>
